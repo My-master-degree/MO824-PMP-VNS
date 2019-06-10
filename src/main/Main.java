@@ -31,7 +31,7 @@ public class Main {
 	
 	public static Integer VNS_ITERATION_MAX_NUMBER = Integer.MAX_VALUE;
 	public static Integer VNS_TIME_MAX_MILI_SECONDS = 10000;
-	public static Integer EXACT_TIME_MAX_SECONDS = 6000;
+	public static Integer EXACT_TIME_MAX_SECONDS = 600;
 	
 	public static void main(String[] args) {
 		String[] pmp_instances = new String[] {
@@ -86,10 +86,9 @@ public class Main {
 		return str;
 	}
 	
-	public static void runExacts(String[] instances) throws IOException, GRBException {
-		String str = "";
+	public static void runExacts(String[] instances) throws IOException, GRBException {		
 		for (int i = 0; i < instances.length; i++) {
-			str += instances[i] + "\n";
+			String str = instances[i] + "\n";
 			// instance name
 			Gurobi_PMP gurobi = new Gurobi_PMP(instances[i]);
 //			gurobi.env = new GRBEnv("mip1.log");
@@ -129,10 +128,12 @@ public class Main {
 			System.out.println(medians);
 			gurobi.model.dispose();
 			gurobi.env.dispose();
-			break;
-		}
-		BufferedWriter writer = new BufferedWriter(new FileWriter("exacts.txt"));
-		writer.write(str);		     
-	    writer.close();
+//			break;
+			String[] parts = instances[i].split("/");
+			String output_name = parts[parts.length - 1]; 
+			BufferedWriter writer = new BufferedWriter(new FileWriter("exacts-"+output_name+".txt"));
+			writer.write(str);		     
+		    writer.close();
+		}		
 	}
 }

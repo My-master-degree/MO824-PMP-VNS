@@ -2,4 +2,19 @@
 Z* = 1767.0
 ObjBound = 1767.0
 ObjBoundC = 1767.0
-Time = 5815
+Time = 6062
+./pmp_instances/instance1.pmp
+Z* = 598.0
+ObjBound = 598.0
+ObjBoundC = 598.0
+Time = 112
+./pmp_instances/instance2.pmp
+Z* = 3925.0
+ObjBound = 3890.0
+ObjBoundC = 3889.5803203661326
+Time = 60016
+./pmp_instances/instance3.pmp
+Z* = 1113.0
+ObjBound = 1113.0
+ObjBoundC = 1113.0
+Time = 573

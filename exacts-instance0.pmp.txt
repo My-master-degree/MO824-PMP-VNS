@@ -1,0 +1,5 @@
+./pmp_instances/instance0.pmp
+Z* = 1767.0
+ObjBound = 1767.0
+ObjBoundC = 1767.0
+Time = 7822

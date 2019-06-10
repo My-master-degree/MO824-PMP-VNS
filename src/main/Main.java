@@ -92,10 +92,11 @@ public class Main {
 			// instance name
 			Gurobi_PMP gurobi = new Gurobi_PMP(instances[i]);
 //			gurobi.env = new GRBEnv("mip1.log");
-			gurobi.env = new GRBEnv();
+			gurobi.env = new GRBEnv();			
 			gurobi.model = new GRBModel(gurobi.env);
 			// execution time in seconds 
 			gurobi.model.getEnv().set(GRB.DoubleParam.TimeLimit, EXACT_TIME_MAX_SECONDS);
+			gurobi.env.set(GRB.IntParam.OutputFlag, 0);
 			// generate the model
 			gurobi.populateNewModel(gurobi.model);
 			// write model to file
@@ -128,12 +129,12 @@ public class Main {
 			System.out.println(medians);
 			gurobi.model.dispose();
 			gurobi.env.dispose();
-//			break;
 			String[] parts = instances[i].split("/");
 			String output_name = parts[parts.length - 1]; 
 			BufferedWriter writer = new BufferedWriter(new FileWriter("exacts-"+output_name+".txt"));
 			writer.write(str);		     
 		    writer.close();
+			break;
 		}		
 	}
 }

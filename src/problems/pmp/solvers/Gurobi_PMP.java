@@ -49,12 +49,12 @@ public class Gurobi_PMP {
 			GRBLinExpr leftExpr = new GRBLinExpr();
 			//	for each facility
 			for (int j = 0; j < pmp.size; j++) {
-				if (j != i)
-					leftExpr.addTerm(1d, x[i][j]);
+//				if (j != i)
+				leftExpr.addTerm(1d, x[i][j]);
 			}
 			GRBLinExpr rightExpr = new GRBLinExpr();
 			rightExpr.addConstant(1);
-			rightExpr.addTerm(-1, y[i]);
+//			rightExpr.addTerm(-1, y[i]);
 			model.addConstr(leftExpr, GRB.EQUAL, rightExpr, "customer_"+i+"");
 		}
 //		x_{ij} \leq y_j (i,j \in \{1, ..., N\})		
@@ -62,13 +62,13 @@ public class Gurobi_PMP {
 		for (int i = 0; i < pmp.size; i++) {			
 			// 	for each j
 			for (int j = 0; j < pmp.size; j++) {
-				if (i != j) {
+//				if (i != j) {
 					GRBLinExpr leftSidedExpr = new GRBLinExpr();
 					leftSidedExpr.addTerm(1, x[i][j]);
 					GRBLinExpr rightSidedExpr = new GRBLinExpr();
 					rightSidedExpr.addTerm(1, y[j]);
 					model.addConstr(leftSidedExpr, GRB.LESS_EQUAL, rightSidedExpr, "facility_"+j);
-				}
+//				}
 			}
 			
 		}		
@@ -81,13 +81,13 @@ public class Gurobi_PMP {
 		model.addConstr(expr, GRB.EQUAL, pmp.p, "update facility j");
 //		y_j \leq x_{jj} j \in N
 		// for each j
-		for (int j = 0; j < pmp.size; j++) {			
-			GRBLinExpr leftExpr = new GRBLinExpr();
-			leftExpr.addTerm(1, y[j]);
-			GRBLinExpr rightExpr = new GRBLinExpr();
-			rightExpr.addTerm(1, x[j][j]);
-			model.addConstr(leftExpr, GRB.LESS_EQUAL, rightExpr, "update facility j");
-		}		
+//		for (int j = 0; j < pmp.size; j++) {			
+//			GRBLinExpr leftExpr = new GRBLinExpr();
+//			leftExpr.addTerm(1, y[j]);
+//			GRBLinExpr rightExpr = new GRBLinExpr();
+//			rightExpr.addTerm(1, x[j][j]);
+//			model.addConstr(leftExpr, GRB.LESS_EQUAL, rightExpr, "update facility j");
+//		}		
 //		setup
 		model.setObjective(obj);
 		model.update();
